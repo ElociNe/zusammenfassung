@@ -16,11 +16,16 @@
     
 ## 3. WAE - With-Arithmetic Expressions
 1. with Binder - etwas einen Namen geben
+
   ``` scala
   type Env = Map[Symbol,Int]
+  ```
+
+  ```scala
   case class With(x: Symbol, xdef: Exp, body: Exp) extends Exp
   ```
-2. Definitons:
+  
+2. Definitions:
 	* Binding Instance: 
 		*A binding instance of an identiﬁer is the instance of the identiﬁer that gives it its value. In WAE , the 'x' position of a with is the only binding instance.
 	* Scope: 
@@ -30,7 +35,7 @@
 	* Free Instance:
 		* An identiﬁer not contained in the scope of any binding instance of its name is said to be free.
 3. Substitution kann verwendet werden um "Namen" in PL zu verstehen
-4. Die Korrekte Implementation von Substitution muss mit freien, gebundenen und gebundenen Instanzen von namen und deren Scopes korrekt umgehen können
+4. Die korrekte Implementation von Substitution muss mit freien und gebundenen Variablen sowie gebundenen Instanzen von Namen und deren Scopes korrekt umgehen können
   ``` scala
    def makeEval(subst: (Exp,Symbol,Num)=>Exp) : Exp=>Int = {
     def eval(e: Exp) : Int = e match {
@@ -149,7 +154,7 @@ def eval(e: Exp) : Exp = e match {
     case _ => e // numbers and functions evaluate to themselves
 }
 ```
-7. closures werden gebraut, da für die Substitution Parts zur evaluation zurückstellen diese können ohne ihre passendes Env nicht ausgewertet werden
+7. closures werden gebraucht, da für die Substitution Parts zur Evaluation zurückgestellt werden, diese können ohne ihre passende Environments nicht ausgewertet werden
 ``` scala  
 case class ClosureV(f: Fun, env: Env) extends Value
   
