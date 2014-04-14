@@ -60,6 +60,7 @@
    }
    makeEval(With('x, 5, With('x, 'x, 'x)) // == 5
 ```
+
 ##4. F1- WAE - First order-With-AE    
 
 1. Warum Funktionen( Prozeduren/Methoden)?
@@ -79,7 +80,8 @@
 3. different namespaces
     * Name der Funktion wird in eval gehandhabt, subst macht den Rest
 4. ``` type Env = Map[Symbol,Int] ```
- ``` scala
+
+``` scala
  def evalWithEnv(funs: Funs, env: Env, e: Exp) : Int = e match {
     case Num(n) => n
     case Id(x) => env(x) // look up in repository of deferred substitutions
@@ -113,7 +115,8 @@
   }   
 }
  evalDynScope(someFuns,Map.empty, Call('doubleadder,List(2,3))
- ```
+```
+ 
 5. Static Scope: In einer PL mit "static scope", der Scope eines Identifiers ist eine syntaktisch eingegrenzte Region
     * Eine typische Region wäre der body einer Funktion oder einem anderen "binding construct" 
  
@@ -128,7 +131,8 @@
 4. lambda x.x+3 (in Scala) => (x) => x+3
 5. desugering: constructive translation
 6. Freie Variablen: Um vorzubeuen, das x in einer Methode das "gleiche" x ist wie außerhalb.. Sonst: static scoping!
- ``` scala
+
+``` scala
  def subst(e1 : Exp, x: Symbol, e2: Exp) : Exp = e1 match {
     case Num(n) => e1
     case Add(l,r) => Add(subst(l,x,e2), subst(r,x,e2))
@@ -154,7 +158,9 @@ def eval(e: Exp) : Exp = e match {
     case _ => e // numbers and functions evaluate to themselves
 }
 ```
+
 7. closures werden gebraucht, da für die Substitution Parts zur Evaluation zurückgestellt werden, diese können ohne ihre passende Environments nicht ausgewertet werden
+
 ``` scala  
 case class ClosureV(f: Fun, env: Env) extends Value
   
@@ -198,6 +204,7 @@ evalWithEnv(App( Fun('x,Add('x,5)), 7), Map.empty)
 	  i)represent thunks (type Thunk)
 	  ii) create thunks (method delay)
 	  iii) evaluate thunks (method force)
+
 ```scala
 trait CBN {
   type Thunk
@@ -237,6 +244,7 @@ trait CBN {
 6. Call-by-need
 	  * Call-by-Name: Ein Argument das n Mal im Body verwendet wird, wird auch n mal ausgewertet 
 	  * Im Call-by-need wird das ausgewertete Value gespeichert
+
 ``` scala  
 object CallByNeed extends CBN {
   case class MemoThunk(e: Exp, env: Env) {
@@ -253,6 +261,7 @@ object CallByNeed extends CBN {
   }
 }
 ```
+
 7. Ist es eine gute idee Implicite Mutation PL mit Lazy Evaluation zu mixen?
 	  * Nein, da Variablen weiter verwendet werden..
       
@@ -301,6 +310,7 @@ case class Seq(e1: Exp, e2: Exp) extends Exp // sequencing of expressions
     * Wenn die Meta Sprache das feature schon genau so wie gewollt umsetzten
 3. HOAS - Higher-order abstract syntax
 4. 2 Objekt Sprachen Expressions sind equivalent wenn ihre "denotations" als Meta-Level Expressions sind equivalent im Meta-level
+
 ##13. CPS Transformation
 
 ##15. Let/cc - Racket/Scheme
@@ -315,6 +325,7 @@ case class Seq(e1: Exp, e2: Exp) extends Exp // sequencing of expressions
     
 ##17. Defunktionalisierung
   1. !!?!
+
 ##18. Monaden
   1. !!?!
       
