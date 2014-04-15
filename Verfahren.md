@@ -1,22 +1,16 @@
 ##Verfahren die man können muss!
 ########################################################
 
-* CPS - Continuation passing style 
+1. CPS - Continuation passing style 
 * Lambda Lifting
 * Defunktionalisierung
-
 * System F
 * Typ Ableitung/Erkennung
-
 * Analyse von
-    * Join
+    * Joins
     * Meets
     * Subtyping
-
 * Churchencoding
-
 * letcc
-
 * Robinson Algorithmus
-
 * Monaden?
