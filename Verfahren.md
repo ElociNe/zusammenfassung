@@ -26,3 +26,9 @@
          * Store passing style
          * Continuation passing style
          
+* Arten von Monaden:
+   * Reader
+   * State
+   * Continuation
+   * Identity
+   * I/O
