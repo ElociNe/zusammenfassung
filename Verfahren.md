@@ -27,8 +27,8 @@
          * Continuation passing style
          
 * Arten von Monaden:
-   * Reader
-   * State
-   * Continuation
-   * Identity
-   * I/O
+   * Reader aka Enviroment Monad
+   * State Monad
+   * Continuation Monad
+   * Identity Monad
+   * I/O Monad
