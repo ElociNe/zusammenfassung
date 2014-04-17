@@ -189,18 +189,20 @@ evalWithEnv(App( Fun('x,Add('x,5)), 7), Map.empty)
 	  
 2. call-by-name - -Ähnlich lazy evaluation
 	  * Anstelle das Argument a im App-Fall zu substituieren, wird zuerst das nicht ausgewertete Argument in den body substituiert (der Rest bleibt)
- ``` scala Evalcbn:
+3. Evalcbn:
+
+```scala 
   case App(f,a) => evalcbn(f) match {
      case Fun(x,body) => evalcbn( subst(body,x, a)) // no evaluation of a!
      case _ => sys.error("can only apply functions")
    }
-  ```
-3. beta-equivalence: ? 
+```
+4. beta-equivalence: ? 
 	  * Wenn Funktionen übergeben werden, returnen Evalcbn und eval nicht mehr das gleiche Ergebnis. Wenn wir innerhalb der Funktionsbodys evaluieren würden (under a lambda) dann könnte man den Rückgabewert den eval ausgibt mit dem Rückgabewert von evalcbn produzieren
-4. Thunks (Nicht in Scala umsetzbar)
+5. Thunks (Nicht in Scala umsetzbar)
 	  * type Thunk = (Exp, Env)
 	  * type Env = Map[Symbol, Thunk]
-5. Thunks (In Scala)
+6. Thunks (In Scala)
 	  i)represent thunks (type Thunk)
 	  ii) create thunks (method delay)
 	  iii) evaluate thunks (method force)
@@ -240,8 +242,7 @@ trait CBN {
  }
 }
 ```
-
-6. Call-by-need
+7. Call-by-need
 	  * Call-by-Name: Ein Argument das n Mal im Body verwendet wird, wird auch n mal ausgewertet 
 	  * Im Call-by-need wird das ausgewertete Value gespeichert
 
@@ -261,8 +262,7 @@ object CallByNeed extends CBN {
   }
 }
 ```
-
-7. Ist es eine gute idee Implicite Mutation PL mit Lazy Evaluation zu mixen?
+8. Ist es eine gute idee Implicite Mutation PL mit Lazy Evaluation zu mixen?
 	  * Nein, da Variablen weiter verwendet werden..
       
 ##7. Haskelzeugs..
